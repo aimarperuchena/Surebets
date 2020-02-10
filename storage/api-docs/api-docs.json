@@ -90,23 +90,23 @@
                         }
                     },
                     {
-                        "name": "bookie1_id",
+                        "name": "bookie1",
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     },
                     {
-                        "name": "bookie2_id",
+                        "name": "bookie2",
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "integer"
+                            "type": "string"
                         }
                     },
                     {
-                        "name": "bookie3_id",
+                        "name": "bookie3",
                         "in": "query",
                         "required": true,
                         "schema": {
@@ -128,6 +128,29 @@
                     },
                     "default": {
                         "description": "Error Ocurred"
+                    }
+                }
+            }
+        },
+        "/api/surebet/{surebet_id}": {
+            "get": {
+                "summary": "Mostrar Surebet",
+                "parameters": [
+                    {
+                        "name": "surebet_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    },
+                    "200": {
+                        "description": "Success"
                     }
                 }
             }

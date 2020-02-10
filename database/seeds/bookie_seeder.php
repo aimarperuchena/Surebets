@@ -13,7 +13,7 @@ class bookie_seeder extends Seeder
     {
         //1
         DB::table('bookie')->insert([
-            'name'=>'Bet 365'
+            'name'=>'Bet365'
         ]);
         //2
         DB::table('bookie')->insert([
@@ -25,7 +25,7 @@ class bookie_seeder extends Seeder
         ]);
         //4
         DB::table('bookie')->insert([
-            'name'=>'Marathon Bet'
+            'name'=>'MarathonBet'
         ]);
         //5
         DB::table('bookie')->insert([
@@ -41,15 +41,15 @@ class bookie_seeder extends Seeder
         ]);
         //8
         DB::table('bookie')->insert([
-            'name'=>'Marca Apuestas'
+            'name'=>'MarcaApuestas'
         ]);
         //9
         DB::table('bookie')->insert([
-            'name'=>'William Hill'
+            'name'=>'WilliamHill'
         ]);
         //10
         DB::table('bookie')->insert([
-            'name'=>'888 Sport'
+            'name'=>'888Sport'
         ]);
         //11
         DB::table('bookie')->insert([

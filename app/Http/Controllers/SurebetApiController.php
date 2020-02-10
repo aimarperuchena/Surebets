@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Surebet;
+use App\Bookie;
 use Illuminate\Http\Request;
 
 class SurebetApiController extends Controller
@@ -25,6 +26,29 @@ class SurebetApiController extends Controller
      *         response="default",
      *         description="Error Ocurred"
      *     )
+     * )
+     * 
+     * @OA\Get(
+     *     path="/api/surebet/{surebet_id}",
+    
+     *     summary="Mostrar Surebet",
+   
+     *     @OA\Response(
+     *         response="default",
+     *         description="Ha ocurrido un error."
+     *     ),
+     *    @OA\Parameter(
+     *          name="surebet_id",
+     *          in="path",
+     *         required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),   
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success"
+     *      ),
      * )
      *
      * @OA\Post(
@@ -103,23 +127,23 @@ class SurebetApiController extends Controller
      *          )
      *      ),
      *      @OA\Parameter(
-     *          name="bookie1_id",
+     *          name="bookie1",
      *          in="query",
      *         required=true,
      *          @OA\Schema(
-     *              type="integer"
+     *              type="string"
      *          )
      *      ),         
      *    @OA\Parameter(
-     *          name="bookie2_id",
+     *          name="bookie2",
      *          in="query",
      *         required=true,
      *          @OA\Schema(
-     *              type="integer"
+     *              type="string"
      *          )
      *      ),  
      *     @OA\Parameter(
-     *          name="bookie3_id",
+     *          name="bookie3",
      *          in="query",
      *         required=true,
      *          @OA\Schema(
@@ -160,6 +184,9 @@ class SurebetApiController extends Controller
     {
         $select = Surebet::where('match', $request->match)->count();
         if ($select == 0) {
+            $bookie1=Bookie::where('name',$request->bookie1)->first();
+            $bookie2=Bookie::where('name',$request->bookie2)->first();
+            $bookie3=Bookie::where('name',$request->bookie3)->first();
             $surebet = new Surebet();
             $surebet->date = $request->date;
             $surebet->match = $request->match;
@@ -168,9 +195,9 @@ class SurebetApiController extends Controller
             $surebet->odd1 = $request->odd1;
             $surebet->odd2 = $request->odd2;
             $surebet->odd3 = $request->odd3;
-            $surebet->bookie1_id = $request->bookie1_id;
-            $surebet->bookie2_id = $request->bookie2_id;
-            $surebet->bookie3_id = $request->bookie3_id;
+            $surebet->bookie1_id = $bookie1->id;
+            $surebet->bookie2_id = $bookie2->id;
+            $surebet->bookie3_id = $bookie3->id;
             $surebet->percentage = $request->percentage;
             $surebet->save();
         }
@@ -182,9 +209,10 @@ class SurebetApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($surebets_id)
     {
-        //
+        $bookie=Bookie::where('name',$surebets_id)->get();
+        return $bookie;
     }
 
     /**
