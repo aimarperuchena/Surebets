@@ -184,9 +184,9 @@ class SurebetApiController extends Controller
     {
         $select = Surebet::where('match', $request->match)->count();
         if ($select == 0) {
-            $bookie1=Bookie::where('name',$request->bookie1)->first();
-            $bookie2=Bookie::where('name',$request->bookie2)->first();
-            $bookie3=Bookie::where('name',$request->bookie3)->first();
+            $bookie1=Bookie::where('name',$request->bookie1)->get();
+            $bookie2=Bookie::where('name',$request->bookie2)->get();
+            $bookie3=Bookie::where('name',$request->bookie3)->get();
             $surebet = new Surebet();
             $surebet->date = $request->date;
             $surebet->match = $request->match;
