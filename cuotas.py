@@ -14,7 +14,7 @@ from urllib.request import Request, urlopen
 def enviarPost(match, date, team1, team2, odd1, odd2, odd3, bookie1, bookie2, bookie3, percentage):
 
     fecha = today.strftime("%Y-%m-%d")
-    url = 'https://aimarsurebet.herokuapp.com/api/surebet'
+    url = 'https://127.0.0.1:8000/api/surebet'
     objeto = {'match': match, 'date': fecha, 'team1': team1, 'team2': team2, 'odd1': odd1, 'odd2': odd2,
               'odd3': odd3, 'bookie1_id': bookie1, 'bookie2_id': bookie2, 'bookie3_id': bookie3, 'percentage': percentage}
     x = requests.post(url, data=objeto)

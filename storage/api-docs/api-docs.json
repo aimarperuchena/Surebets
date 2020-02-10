@@ -11,6 +11,17 @@
     ],
     "paths": {
         "/api/surebet": {
+            "get": {
+                "summary": "Index surebets",
+                "responses": {
+                    "200": {
+                        "description": "Index surebets"
+                    },
+                    "default": {
+                        "description": "Error Ocurred"
+                    }
+                }
+            },
             "post": {
                 "summary": "Insert Surebet",
                 "parameters": [
@@ -51,7 +62,7 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "double"
+                            "type": "float"
                         }
                     },
                     {
@@ -59,7 +70,7 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "double"
+                            "type": "float"
                         }
                     },
                     {
@@ -67,7 +78,7 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "double"
+                            "type": "float"
                         }
                     },
                     {
@@ -75,7 +86,7 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "double"
+                            "type": "float"
                         }
                     },
                     {
@@ -107,7 +118,7 @@
                         "in": "query",
                         "required": true,
                         "schema": {
-                            "type": "double"
+                            "type": "float"
                         }
                     }
                 ],

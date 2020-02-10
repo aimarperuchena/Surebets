@@ -5,19 +5,17 @@ namespace App\Http\Controllers;
 use App\Surebet;
 use Illuminate\Http\Request;
 
-/**
- * @OA\Info(title="API Usuarios", version="1.0")
- *
- * @OA\Server(url="http://127.0.0.1:8000/")
- */
-class SurebetController extends Controller
+class SurebetApiController extends Controller
 {
-
     /**
+     * @OA\Info(title="API Usuarios", version="1.0")
+     *
+     * @OA\Server(url="http://127.0.0.1:8000/")
+     */
+     /**
      * /**
      * @OA\Get(
      *     path="/api/surebet",
-    
      *     summary="Index surebets",
      *     @OA\Response(
      *         response=200,
@@ -141,10 +139,6 @@ class SurebetController extends Controller
 
 
 
-
-
-
-
     /**
      * Display a listing of the resource.
      *
@@ -164,9 +158,8 @@ class SurebetController extends Controller
      */
     public function store(Request $request)
     {
-        echo "hola";
-        $select=Surebet::where('match',$request->match)->count();
-        if($select==0){
+        $select = Surebet::where('match', $request->match)->count();
+        if ($select == 0) {
             $surebet = new Surebet();
             $surebet->date = $request->date;
             $surebet->match = $request->match;
@@ -181,7 +174,6 @@ class SurebetController extends Controller
             $surebet->percentage = $request->percentage;
             $surebet->save();
         }
-        
     }
 
     /**
