@@ -14,7 +14,7 @@ class SurebetController extends Controller
      */
     public function index()
     {
-        $surebets = Surebet::all()->orderBy('name', 'percentage');
+        $surebets = Surebet::all()->sortBy("percentage");
         return view('inicio')->with('surebets', $surebets);
     }
 
