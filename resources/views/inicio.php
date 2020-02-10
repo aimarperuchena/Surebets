@@ -45,7 +45,7 @@
 
     </table>
 
-  
+  <?php var_dump($surebets)?>
 </body>
 
 </html>
