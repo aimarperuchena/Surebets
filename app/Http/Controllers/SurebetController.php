@@ -15,7 +15,6 @@ class SurebetController extends Controller
     public function index()
     {
         $surebets = Surebet::all();
-        echo "hola";
         return view('inicio')->with('surebets', $surebets);
     }
 
