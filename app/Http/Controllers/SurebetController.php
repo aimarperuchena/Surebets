@@ -14,6 +14,21 @@ class SurebetController extends Controller
 {
 
     /**
+     * /**
+     * @OA\Get(
+     *     path="/api/surebet",
+    
+     *     summary="Index surebets",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Index surebets"
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="Error Ocurred"
+     *     )
+     * )
+     *
      * @OA\Post(
      *     path="/api/surebet",
      *     summary="Insert Surebet",
