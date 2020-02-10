@@ -164,6 +164,7 @@ class SurebetController extends Controller
      */
     public function store(Request $request)
     {
+        echo "hola";
         $select=Surebet::where('match',$request->match)->count();
         if($select==0){
             $surebet = new Surebet();
