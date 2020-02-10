@@ -21,7 +21,7 @@ class bookie_seeder extends Seeder
         ]);
         //3
         DB::table('bookie')->insert([
-            'name'=>'Bwin'
+            'name'=>'BWin'
         ]);
         //4
         DB::table('bookie')->insert([
