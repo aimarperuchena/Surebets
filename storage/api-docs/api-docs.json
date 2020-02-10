@@ -1,0 +1,125 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Usuarios",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/"
+        }
+    ],
+    "paths": {
+        "/api/surebet": {
+            "post": {
+                "summary": "Insert Surebet",
+                "parameters": [
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "date"
+                        }
+                    },
+                    {
+                        "name": "match",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "team1",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "team2",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "odd1",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "double"
+                        }
+                    },
+                    {
+                        "name": "odd2",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "double"
+                        }
+                    },
+                    {
+                        "name": "odd2",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "double"
+                        }
+                    },
+                    {
+                        "name": "odd3",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "double"
+                        }
+                    },
+                    {
+                        "name": "bookie1_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "bookie2_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "bookie3_id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "percentage",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "double"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Insert Surebet."
+                    },
+                    "default": {
+                        "description": "Error Ocurred"
+                    }
+                }
+            }
+        }
+    }
+}
