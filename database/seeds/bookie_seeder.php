@@ -59,5 +59,11 @@ class bookie_seeder extends Seeder
         DB::table('bookie')->insert([
             'name'=>'Interwetten'
         ]);
+        //13
+        DB::table('bookie')->insert([
+            'name'=>'Betfair UK Sportsbook'
+        ]);
+
+        
     }
 }
