@@ -36,9 +36,9 @@
             <td>{{$surebet->odd1}}</td>
             <td>{{$surebet->odd2}}</td>
             <td>{{$surebet->odd3}}</td>
-            <td>{{$surebet->bookie1_id}}</td>
-            <td>{{$surebet->bookie2_id}}</td>
-            <td>{{$surebet->bookie3_id}}</td>
+            <td>{{$surebet->bookie1->name}}</td>
+            <td>{{$surebet->bookie2->name}}</td>
+            <td>{{$surebet->bookie3->name}}</td>
             <td>{{$surebet->percentage}}</td>
         </tr>
         @endforeach
