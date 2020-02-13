@@ -29,7 +29,7 @@
         @foreach($surebets as $surebet)
         
         <tr>
-        @if(isset($surebet->bookie1->name))
+        @if(isset($surebet->bookie3->name))
         <td>{{$surebet->id}}</td>
             <td>{{$surebet->date}}</td>
             <td>{{$surebet->match}}</td>
