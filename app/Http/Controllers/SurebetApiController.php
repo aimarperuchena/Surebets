@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Surebet;
 use App\Bookie;
+use App\Country;
+use App\League;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Sport;
 
 class SurebetApiController extends Controller
 {
@@ -13,7 +17,7 @@ class SurebetApiController extends Controller
      *
      * @OA\Server(url="http://127.0.0.1:8000/")
      */
-     /**
+    /**
      * /**
      * @OA\Get(
      *     path="/api/surebet",
@@ -182,26 +186,141 @@ class SurebetApiController extends Controller
      */
     public function store(Request $request)
     {
-        $select = Surebet::where('match', $request->match)->count();
-        if ($select == 0) {
-            $bookie1=Bookie::where('name',$request->bookie1)->get();
-            $bookie2=Bookie::where('name',$request->bookie2)->get();
-            $bookie3=Bookie::where('name',$request->bookie3)->get();
-            $surebet = new Surebet();
-            $surebet->date = $request->date;
-            $surebet->match = $request->match;
-            $surebet->team1 = $request->team1;
-            $surebet->team2 = $request->team2;
-            $surebet->odd1 = $request->odd1;
-            $surebet->odd2 = $request->odd2;
-            $surebet->odd3 = $request->odd3;
-            $surebet->bookie1_id = $bookie1->id;
-            $surebet->bookie2_id = $bookie2->id;
-            $surebet->bookie3_id = $bookie3->id;
-            $surebet->percentage = $request->percentage;
-            $surebet->save();
+
+        $sport = $request->sport;
+        $country = $request->country;
+        $league = $request->league;
+        echo " DEporte: " . $sport;
+        echo "Pais: " . $country;
+        echo "Liga: " . $league;
+        $sportId = 0;
+        $countryId = 0;
+        $leagueId = 0;
+        $sportCount = Sport::where('name', $sport)->count();
+        echo "<br> --------------------------------------------";
+        echo "COUNT SPORT " . $sportCount;
+        if ($sportCount == 0) {
+            $sportCreate = new Sport();
+            $sportCreate->name = $sport;
+            $sportCreate->save();
+            $a = Sport::where('name', $sport)->first();
+            $sportId = $a->id;
+        } else {
+            $a = Sport::where('name', $sport)->first();
+            $sportId = $a->id;
+        }
+
+        $countryCount = Country::where('name', $country)->count();
+        if ($countryCount == 0) {
+            $countryCreate = new Country();
+            $countryCreate->name = $country;
+            $countryCreate->save();
+            $a = Country::where('name', $country)->first();
+            $countryId = $a->id;
+        } else {
+            $a = Country::where('name', $country)->first();
+            $countryId = $a->id;
+        }
+
+        $leagueCount = League::where('name', $league)->where('country_id', $countryId)->where('sport_id', $sportId)->count();
+
+        echo "LIGA COUNT------------------------" . $leagueCount;
+        if ($leagueCount == 0) {
+            $leagueCreate = new League();
+            $leagueCreate->name = $league;
+            $leagueCreate->sport_id = $sportId;
+            $leagueCreate->country_id = $countryId;
+            $leagueCreate->save();
+            $a = League::where('name', $league)->where('country_id', $countryId)->where('sport_id', $sportId)->first();
+            $leagueId = $a->id;
+        } else {
+            $a = League::where('name', $league)->where('country_id', $countryId)->where('sport_id', $sportId)->first();
+
+
+            $leagueId = $a->id;
+        }
+
+
+
+
+
+        if ($request->sport == "futbol") {
+            $select = Surebet::where('match', $request->match)->where('sport_id', $sportId)->where('country_id', $countryId)->where('league_id', $leagueId)->where('team1', $request->team1)->where('team2', $request->team2)->count();
+            if ($select == 0) {
+                $bookie1 = Bookie::where('name', $request->bookie1)->first();
+                $bookie2 = Bookie::where('name', $request->bookie2)->first();
+                $bookie3 = Bookie::where('name', $request->bookie3)->first();
+                $surebet = new Surebet();
+                $surebet->date = $request->date;
+                $surebet->country_id = $countryId;
+                $surebet->sport_id = $sportId;
+                $surebet->league_id = $leagueId;
+                $surebet->match = $request->match;
+                $surebet->team1 = $request->team1;
+                $surebet->team2 = $request->team2;
+                $surebet->odd1 = $request->odd1;
+                $surebet->odd2 = $request->odd2;
+                $surebet->odd3 = $request->odd3;
+
+                $surebet->bookie1_id = $bookie1->id;
+                $surebet->bookie2_id = $bookie2->id;
+                $surebet->bookie3_id = $bookie3->id;
+                $surebet->percentage = $request->percentage;
+                $surebet->save();
+            } else {
+                $surebet = Surebet::where('match', $request->match)->where('sport_id', $sportId)->where('country_id', $countryId)->where('league_id', $leagueId)->where('team1', $request->team1)->where('team2', $request->team2)->first();
+                if ($request->odd1 != $surebet->odd1 || $request->odd2 != $surebet->odd2 || $request->odd3 != $surebet->odd3) {
+                    $bookie1 = Bookie::where('name', $request->bookie1)->first();
+                    $bookie2 = Bookie::where('name', $request->bookie2)->first();
+                    $bookie3 = Bookie::where('name', $request->bookie3)->first();
+                    $surebet->odd1 = $request->odd1;
+                    $surebet->odd2 = $request->odd2;
+                    $surebet->odd3 = $request->odd3;
+                    $surebet->bookie1_id = $bookie1->id;
+                    $surebet->bookie2_id = $bookie2->id;
+                    $surebet->bookie3_id = $bookie3->id;
+                    $surebet->save();
+                }
+            }
+        } else {
+            $select = Surebet::where('match', $request->match)->where('sport_id', $sportId)->where('country_id', $countryId)->where('league_id', $leagueId)->where('team1', $request->team1)->where('team2', $request->team2)->count();
+            if ($select == 0) {
+                $bookie1 = Bookie::where('name', $request->bookie1)->first();
+                $bookie2 = Bookie::where('name', $request->bookie2)->first();
+
+                $surebet = new Surebet();
+                $surebet->date = $request->date;
+                $surebet->country_id = $countryId;
+                $surebet->sport_id = $sportId;
+                $surebet->league_id = $leagueId;
+                $surebet->match = $request->match;
+                $surebet->team1 = $request->team1;
+                $surebet->team2 = $request->team2;
+                $surebet->odd1 = $request->odd1;
+                $surebet->odd2 = $request->odd2;
+
+
+                $surebet->bookie1_id = $bookie1->id;
+                $surebet->bookie2_id = $bookie2->id;
+
+                $surebet->percentage = $request->percentage;
+                $surebet->save();
+            }else{
+                $surebet = Surebet::where('match', $request->match)->where('sport_id', $sportId)->where('country_id', $countryId)->where('league_id', $leagueId)->where('team1', $request->team1)->where('team2', $request->team2)->first();
+                if ($request->odd1 != $surebet->odd1 || $request->odd2 != $surebet->odd2) {
+                    $bookie1 = Bookie::where('name', $request->bookie1)->first();
+                    $bookie2 = Bookie::where('name', $request->bookie2)->first();
+                    $surebet->odd1 = $request->odd1;
+                    $surebet->odd2 = $request->odd2;
+                    $surebet->bookie1_id = $bookie1->id;
+                    $surebet->bookie2_id = $bookie2->id;
+                    $surebet->save();
+                }
+            }
         }
     }
+
+
 
     /**
      * Display the specified resource.
@@ -211,7 +330,7 @@ class SurebetApiController extends Controller
      */
     public function show($surebets_id)
     {
-        $bookie=Bookie::where('name',$surebets_id)->get();
+        $bookie = Bookie::where('name', $surebets_id)->get();
         return $bookie;
     }
 
