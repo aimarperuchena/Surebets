@@ -17,4 +17,8 @@ class League extends Model
     public function country(){
         return $this->belongsTo(Country::class);
     }
+    public function surebets(){
+        return $this->hasMany(Surebet::class);
+
+    }
 }

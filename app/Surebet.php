@@ -1,7 +1,9 @@
 <?php
 
 namespace App;
-
+use App\Sport;
+use App\League;
+use App\country;
 use Illuminate\Database\Eloquent\Model;
 
 class Surebet extends Model
@@ -18,6 +20,19 @@ class Surebet extends Model
     }
     public function bookie3(){
         return $this->belongsTo(Bookie::class,'bookie3_id');
+    }
+
+    public function sport(){
+        return $this->belongsTo(Sport::class,'sport_id');
+
+    }
+    public function country(){
+        return $this->belongsTo(Country::class,'country_id');
+
+    }
+    public function league(){
+        return $this->belongsTo(League::class,'league_id');
+
     }
 
    

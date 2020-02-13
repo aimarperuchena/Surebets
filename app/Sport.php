@@ -2,6 +2,7 @@
 
 namespace App;
 use App\League;
+use App\Surebet;
 use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model
@@ -11,5 +12,10 @@ class Sport extends Model
 
     public function leagues(){
         return $this->hasMany(League::class);
+    }
+
+    public function surebets(){
+        return $this->hasMany(Surebet::class);
+
     }
 }
