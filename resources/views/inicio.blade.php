@@ -27,8 +27,10 @@
 
 
         @foreach($surebets as $surebet)
+        
         <tr>
-            <td>{{$surebet->id}}</td>
+        @if(isset($surebet->bookie1->name))
+        <td>{{$surebet->id}}</td>
             <td>{{$surebet->date}}</td>
             <td>{{$surebet->match}}</td>
             <td>{{$surebet->team1}}</td>
@@ -40,6 +42,23 @@
             <td>{{$surebet->bookie2->name}}</td>
             <td>{{$surebet->bookie3->name}}</td>
             <td>{{$surebet->percentage}}</td>
+        @else
+
+       
+            <td>{{$surebet->id}}</td>
+            <td>{{$surebet->date}}</td>
+            <td>{{$surebet->match}}</td>
+            <td>{{$surebet->team1}}</td>
+            <td>{{$surebet->team2}}</td>
+            <td>{{$surebet->odd1}}</td>
+            <td>{{$surebet->odd2}}</td>
+           <td></td>
+           
+            <td>{{$surebet->bookie1->name}}</td>
+            <td>{{$surebet->bookie2->name}}</td>
+           <td></td>
+            <td>{{$surebet->percentage}}</td>
+            @endif
         </tr>
         @endforeach
 
