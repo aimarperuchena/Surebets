@@ -37,7 +37,7 @@
                     @if(isset($surebet->bookie3->name))
                     <td>{{$surebet->id}}</td>
                     <td>{{$surebet->date}}</td>
-                    <td>{{$surebet->country}}</td>
+                    <td>{{$surebet->country->name}}</td>
                     <td>{{$surebet->sport->name}}</td>
                     <td>{{$surebet->league->name}}</td>
                     <td>{{$surebet->match}}</td>
@@ -55,7 +55,7 @@
 
                     <td>{{$surebet->id}}</td>
                     <td>{{$surebet->date}}</td>
-                    <td>{{$surebet->country}}</td>
+                    <td>{{$surebet->country->name}}</td>
                     <td>{{$surebet->sport->name}}</td>
                     <td>{{$surebet->league->name}}</td>
                     <td>{{$surebet->match}}</td>

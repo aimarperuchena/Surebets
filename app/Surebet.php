@@ -3,7 +3,7 @@
 namespace App;
 use App\Sport;
 use App\League;
-use App\country;
+use App\Country;
 use Illuminate\Database\Eloquent\Model;
 
 class Surebet extends Model
