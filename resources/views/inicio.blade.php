@@ -15,7 +15,9 @@
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Country</th>
                     <th scope="col">Sport</th>
+                    <th scope="col">League</th>
                     <th scope="col">Match</th>
                     <th scope="col">Team 1</th>
                     <th scope="col">Team 2</th>
@@ -35,7 +37,9 @@
                     @if(isset($surebet->bookie3->name))
                     <td>{{$surebet->id}}</td>
                     <td>{{$surebet->date}}</td>
+                    <td>{{$surebet->country->name}}</td>
                     <td>{{$surebet->sport->name}}</td>
+                    <td>{{$surebet->league->name}}</td>
                     <td>{{$surebet->match}}</td>
                     <td>{{$surebet->team1}}</td>
                     <td>{{$surebet->team2}}</td>
@@ -51,6 +55,9 @@
 
                     <td>{{$surebet->id}}</td>
                     <td>{{$surebet->date}}</td>
+                    <td>{{$surebet->country->name}}</td>
+                    <td>{{$surebet->sport->name}}</td>
+                    <td>{{$surebet->league->name}}</td>
                     <td>{{$surebet->match}}</td>
                     <td>{{$surebet->team1}}</td>
                     <td>{{$surebet->team2}}</td>
